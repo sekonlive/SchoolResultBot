@@ -5,7 +5,7 @@ function processMessage()
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
  $actionName=$update["result"]["action"];
-    $city = $update["result"]["geo-city"];
+    $city = $update["result"]["parameters"]["geo-city"];
     switch($actionName)
     {
         case 'weather' :   $speech = "Weather in ".$city.": Clear sky, 29 deg c ";
