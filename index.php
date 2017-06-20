@@ -13,6 +13,7 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
+
             default :   $speech = $city." Clear Sky";
                         $displayText = $actionName."jhfjf";
                         $source = "DGO-Server";
@@ -38,6 +39,7 @@ $response = file_get_contents("php://input");
 $update = json_decode($response, true);
 if (isset($update["result"]["action"]))
 {
+
 
      processMessage();
 }
