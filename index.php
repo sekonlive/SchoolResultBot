@@ -12,8 +12,8 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech = "Somthing went wrong!Try again... ";
-                        $displayText = "Somthing went wrong!Try again...";
+            default :   $speech = $city;
+                        $displayText = $actionName;
                         $source = "DGO-Server";
                         break;
     }
