@@ -8,8 +8,8 @@ $update = json_decode($response, true);
     $city = $update["result"]["geo-city"];
     switch($actionName)
     {
-        case 'weather' :   $speech = "Weather in Payyoli : Clear sky, 29 deg c ";
-                        $displayText = "Weather in Payyoli : Clear sky, 29 deg c ";
+        case 'weather' :   $speech = "Weather in ".$city. ": Clear sky, 29 deg c ";
+                        $displayText = "Weather in".$city. ": Clear sky, 29 deg c ";
                         $source = "weather";
                         break;
         case 'sslcResult' :   $speech = "Congrats, You are eligible for higher studies. ";
