@@ -1,8 +1,8 @@
 <?php
 function processMessage()
 {
-    $city = $update["result"]["gio-city"];
-    switch($update["result"]["action"])
+
+    switch($actionName)
     {
         case 'weather' :   $speech = "Weather in Payyoli : Clear sky, 29 deg c ";
                         $displayText = "Weather in Payyoli : Clear sky, 29 deg c ";
@@ -12,7 +12,7 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech = "Somthing went wrong!Try again... ".geo-city;
+            default :   $speech = "Somthing went wrong!Try again... ";
                         $displayText = "Somthing went wrong!Try again...";
                         $source = "DGO-Server";
                         break;
@@ -37,6 +37,8 @@ $response = file_get_contents("php://input");
 $update = json_decode($response, true);
 if (isset($update["result"]["action"]))
 {
+    $actionName=$update["result"]["action"];
+    $city = $update["result"]["gio-city"];
      processMessage();
 }
 
