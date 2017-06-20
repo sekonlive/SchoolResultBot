@@ -1,8 +1,8 @@
 <?php
 function processMessage()
 {
-$update='sslcResult';
-    switch($update)
+$action=$update["result"]["action"];
+    switch($action)
     {
         case 'weather' :   $speech = "Weather in Payyoli : Clear sky, 29 deg c ";
                         $displayText = "Weather in Payyoli : Clear sky, 29 deg c ";
@@ -31,17 +31,18 @@ function sendMessage($parameters)
     echo json_encode($parameters);
 }
 
-/*
+
 
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
 if (isset($update["result"]["action"]))
 {
-    
+     processMessage();
 }
-*/
 
- processMessage();
+
+
+
 
 
 ?>
