@@ -1,8 +1,8 @@
 <?php
 function processMessage()
 {
-$action=$update["result"]["action"];
-    switch($action)
+
+    switch($update["result"]["action"])
     {
         case 'weather' :   $speech = "Weather in Payyoli : Clear sky, 29 deg c ";
                         $displayText = "Weather in Payyoli : Clear sky, 29 deg c ";
