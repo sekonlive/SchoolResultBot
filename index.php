@@ -12,7 +12,7 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech = $city."fdytf";
+            default :   $speech =$update["result"]["geo-city"]."ttest";
                         $displayText = $actionName."jhfjf";
                         $source = "DGO-Server";
                         break;
