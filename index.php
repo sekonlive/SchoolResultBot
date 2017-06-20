@@ -12,8 +12,8 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech = $city+"fdytf";
-                        $displayText = $actionName+"jhfjf";
+            default :   $speech = $city."fdytf";
+                        $displayText = $actionName."jhfjf";
                         $source = "DGO-Server";
                         break;
     }
