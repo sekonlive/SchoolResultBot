@@ -1,7 +1,7 @@
 <?php
 function processMessage()
 {
-
+    $city = $update["result"]["gio-city"];
     switch($update["result"]["action"])
     {
         case 'weather' :   $speech = "Weather in Payyoli : Clear sky, 29 deg c ";
@@ -12,7 +12,7 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech = "Somthing went wrong!Try again... ";
+            default :   $speech = "Somthing went wrong!Try again... ".$geo-city;
                         $displayText = "Somthing went wrong!Try again...";
                         $source = "DGO-Server";
                         break;
