@@ -1,6 +1,9 @@
 <?php
 function processMessage()
 {
+
+$response = file_get_contents("php://input");
+$update = json_decode($response, true);
  $actionName=$update["result"]["action"];
     $city = $update["result"]["geo-city"];
     switch($actionName)
