@@ -12,7 +12,7 @@ function processMessage()
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
-            default :   $speech =$update["result"]["geo-city"];
+            default :   $speech =$city."city";
                         $displayText = $actionName."jhfjf";
                         $source = "DGO-Server";
                         break;
@@ -38,7 +38,7 @@ $update = json_decode($response, true);
 if (isset($update["result"]["action"]))
 {
     $actionName=$update["result"]["action"];
-    $city = $update["result"]["geo-city"];
+    $city = "Vadakara";
      processMessage();
 }
 
