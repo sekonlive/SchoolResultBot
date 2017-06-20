@@ -38,7 +38,7 @@ $update = json_decode($response, true);
 if (isset($update["result"]["action"]))
 {
     $actionName=$update["result"]["action"];
-    $city = $update["result"]["gio-city"];
+    $city = $update["result"]["geo-city"];
      processMessage();
 }
 
