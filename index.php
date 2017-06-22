@@ -1,15 +1,18 @@
 <?php
-function processMessage()
-{
 
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
+
+function processMessage()
+{
+
+
  $actionName=$update["result"]["action"];
     $city = $update["result"]["parameters"]["geo-city"];
     switch($actionName)
     {
-        case 'weather' :   $speech = "Weather in ".$city.": Clear sky, 29 deg c ";
-                        $displayText = "Weather in".$city.": Clear sky, 29 deg c ";
+        case 'weather' :   $speech = "Weather in ".$city." : Clear sky, 29 deg c ";
+                        $displayText = "Weather in ".$city." : Clear sky, 29 deg c ";
                         $source = "weather";
                         break;
         case 'sslcResult' :   $speech = "Congrats, You are eligible for higher studies. ";
@@ -38,8 +41,7 @@ function sendMessage($parameters)
 
 
 
-$response = file_get_contents("php://input");
-$update = json_decode($response, true);
+
 if (isset($update["result"]["action"]))
 {
 
