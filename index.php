@@ -6,6 +6,8 @@ $update = json_decode($response, true);
 function processMessage()
 {
 
+$response = file_get_contents("php://input");
+$update = json_decode($response, true);
 
  $actionName=$update["result"]["action"];
     $city = $update["result"]["parameters"]["geo-city"];
