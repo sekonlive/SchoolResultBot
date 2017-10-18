@@ -44,7 +44,7 @@ $update = json_decode($response, true);
                         $displayText ="OTB updation Failed for the PNR : ".$pnr;
                   }
       }else{
-                        $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
+                        $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later".$Status."|".$ErrorType;
                         $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later".$Status."|".$ErrorType;
       }
                          
