@@ -45,7 +45,7 @@ $update = json_decode($response, true);
                   }
       }else{
                         $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
-                        $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
+                        $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later".$Status."|".$ErrorType;
       }
                          
                         $source = "OTBNetwork";
