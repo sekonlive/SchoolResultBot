@@ -23,7 +23,7 @@ $update = json_decode($response, true);
                         $source = "sslcResult";
                         break;
      case 'otbStatus'   : 
-                          $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
+                          $getStatusUrl="manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
 
       $content=file_get_contents($getBalUrl);
       
