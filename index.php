@@ -1,5 +1,5 @@
 <?php
-
+ini_set("allow_url_open", 1);
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
 
