@@ -23,9 +23,9 @@ $update = json_decode($response, true);
                         $source = "sslcResult";
                         break;
      case 'otbStatus'   : 
-                          $getStatusUrl="manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
+                          $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
 
-      $content=file_get_contents($getBalUrl);
+      $content=file_get_contents($getStatusUrl);
       
       $Obj=json_decode($content, true);
       $Status=$Obj['Status'];
@@ -44,8 +44,8 @@ $update = json_decode($response, true);
                         $displayText ="OTB updation Failed for the PNR : ".$pnr;
                   }
       }else{
-                        $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later".$Status."|".$ErrorType;
-                        $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later".$Status."|".$ErrorType;
+                        $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
+                        $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
       }
                          
                         $source = "OTBNetwork";
