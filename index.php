@@ -11,6 +11,7 @@ $update = json_decode($response, true);
 
  $actionName=$update["result"]["action"];
     $city = $update["result"]["parameters"]["geo-city"];
+    $pnr = $update["result"]["parameters"]["pnr"];
     switch($actionName)
     {
         case 'weather' :   $speech = "Weather in ".$city." : Clear sky, 29°C ";
@@ -21,7 +22,34 @@ $update = json_decode($response, true);
                         $displayText = "Congrats, You are eligible for higher studies.";
                         $source = "sslcResult";
                         break;
+     case 'otbStatus'   : 
+                          $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
 
+      $content=file_get_contents($getBalUrl);
+      
+      $Obj=json_decode($content, true);
+      $Status=$Obj['Status'];
+      $noPax=$Obj['NoPax'];
+      $Date=$Obj['Date'];
+      $ErrorType=$Obj['ErrorType'];
+      if($ErrorType=='200'){
+                  if($Status=='Done'){
+                        $speech = "OTB Updated for ".$noPax." Pax(s) against, PNR : ".$pnr;
+                        $displayText = "OTB Updated for ".$noPax." Pax(s) against, PNR : ".$pnr;
+                        }else if($Status=='Pending'){
+                        $speech = "OTB Pending for ".$noPax." Pax(s) against, PNR : ".$pnr;
+                        $displayText = "OTB Pending for ".$noPax." Pax(s) against, PNR : ".$pnr;
+                  }else{
+                   $speech = "OTB updation Failed for the PNR : ".$pnr;
+                        $displayText ="OTB updation Failed for the PNR : ".$pnr;
+                  }
+      }else{
+                        $speech = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
+                        $displayText = "OTB Request for the PNR : ".$pnr." not Found, Please check few minutes later";
+      }
+                         
+                        $source = "OTBNetwork";
+                        break;
             default :   $speech = $city." Something went wrong ! Try again...";
                         $displayText = $actionName."Something went wrong ! Try again...";
                         $source = "DGO-Server";
