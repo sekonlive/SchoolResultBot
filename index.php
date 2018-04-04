@@ -2,29 +2,26 @@
 ini_set("allow_url_open", 1);
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
-
 function processMessage()
 {
-
 $response = file_get_contents("php://input");
 $update = json_decode($response, true);
-
  $actionName=$update["result"]["action"];
-    $city = $update["result"]["parameters"]["geo-city"];
+    $AppNo = $update["result"]["parameters"]["AppNo"];
+    $portal = $update["result"]["parameters"]["portal"];
+    
     $pnr = $update["result"]["parameters"]["pnr"];
     switch($actionName)
     {
-        case 'weather' :   $speech = "Weather in ".$city." : Clear sky, 29°C ";
-                        $displayText = "Weather in ".$city." : Clear sky, 29°C ";
-                        $source = "weather";
-                        break;
-        case 'sslcResult' :   $speech = "Congrats, You are eligible for higher studies. ";
-                        $displayText = "Congrats, You are eligible for higher studies.";
-                        $source = "sslcResult";
+        case 'VisaStatus' :   
+            
+                        $getStatusUrl="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.QRY_RESULT_VISA_PRINT.show?p_arg_names=_show_header&p_arg_values=YES&p_arg_names=app_dt1&p_arg_values=&p_arg_names=app_dt2&p_arg_values=&p_arg_names=app_id&p_arg_values=".$AppNo."&p_arg_names=spn&p_arg_values=";
+                        $speech = "Status for ".$AppNo."\n".$getStatusUrl;
+                        $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
+                        $source = "VisaStatus";
                         break;
      case 'otbStatus'   : 
                           $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
-
       $content=file_get_contents($getStatusUrl);
       
       $Obj=json_decode($content, true);
@@ -62,26 +59,13 @@ $update = json_decode($response, true);
       
     
 }
-
 function sendMessage($parameters)
 {
     header('Content-type: application/json');
     echo json_encode($parameters);
 }
-
-
-
-
 if (isset($update["result"]["action"]))
 {
-
-
      processMessage();
 }
-
-
-
-
-
-
 ?>
