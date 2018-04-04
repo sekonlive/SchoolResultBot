@@ -9,7 +9,7 @@ $update = json_decode($response, true);
  $actionName=$update["result"]["action"];
     $AppNo = $update["result"]["parameters"]["AppNo"];
     $portal = $update["result"]["parameters"]["portal"];
-    
+    $AppList=$update["result"]["parameters"]["AppList"];
     $pnr = $update["result"]["parameters"]["pnr"];
     switch($actionName)
     {
@@ -19,6 +19,19 @@ $update = json_decode($response, true);
                         $speech = "Status for ".$AppNo."\n".$getStatusUrl;
                         $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
                         $source = "VisaStatus";
+                        break;
+        case 'PostList' :   
+            
+                        $spon="21196920";
+                        $AppList = rtrim($AppList);
+                        $UserID="gtffy26";
+                        $output = str_replace(PHP_EOL, ':', $AppList);
+//$output = str_replace('\r', ':', $sample);
+                        $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserID."&p_spon=".$spon."&p_rtm=1";
+
+                        $speech = "Post Link for ".$output;
+                        $displayText = "Post Link for ".$output;
+                        $source = "PostList";
                         break;
      case 'otbStatus'   : 
                           $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
