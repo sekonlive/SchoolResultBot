@@ -10,6 +10,8 @@ $update = json_decode($response, true);
     $AppNo = $update["result"]["parameters"]["AppNo"];
     $portal = $update["result"]["parameters"]["portal"];
     $AppList=$update["result"]["parameters"]["AppList"];
+    $UserId=$update["result"]["parameters"]["UserId"];
+    $Spon=$update["result"]["parameters"]["Spon"];
     $pnr = $update["result"]["parameters"]["pnr"];
     switch($actionName)
     {
@@ -22,9 +24,7 @@ $update = json_decode($response, true);
                         break;
         case 'PostList' :   
             
-                        $spon="21196920";
                         $AppList = rtrim($AppList);
-                        $UserID="gtffy26";
                         $output = str_replace(PHP_EOL, ':', $AppList);
 //$output = str_replace('\r', ':', $sample);
                         $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserID."&p_spon=".$spon."&p_rtm=1";
