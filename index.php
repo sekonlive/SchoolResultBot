@@ -26,8 +26,7 @@ $update = json_decode($response, true);
             
                         $AppList = rtrim($AppList);
                         $output = str_replace(PHP_EOL, ':', $AppList);
-//$output = str_replace('\r', ':', $sample);
-                        $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserID."&p_spon=".$spon."&p_rtm=1";
+                        $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserId."&p_spon=".$Spon."&p_rtm=1";
 
                         $speech = "Post Link for ".$output;
                         $displayText = "Post Link for ".$output;
