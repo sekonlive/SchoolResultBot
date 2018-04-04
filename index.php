@@ -28,8 +28,8 @@ $update = json_decode($response, true);
                         $output = str_replace(PHP_EOL, ':', $AppList);
                         $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserId."&p_spon=".$Spon."&p_rtm=1";
 
-                        $speech = "Post Link for ".$output;
-                        $displayText = "Post Link for ".$output;
+                        $speech = "Post Link for".$AppList." \n URL: ".$output;
+                        $displayText = "Post Link for".$AppList." \n URL: ".$output;
                         $source = "PostList";
                         break;
      case 'otbStatus'   : 
