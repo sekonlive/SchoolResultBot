@@ -30,6 +30,13 @@ $update = json_decode($response, true);
                         $speech = "Query: Name:".$Name."\nContact:".$mobileno."\n".$sendSMSLink;
                         $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
                         $source = "VisaStatus";
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, $sendSMSLink);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
                         break;
         case 'PostList' :   
             
