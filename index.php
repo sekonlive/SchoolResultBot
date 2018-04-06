@@ -30,7 +30,7 @@ $update = json_decode($response, true);
                         $speech = "";
                         $displayText = "";
                         $source = "VisaStatus";
-                        $msg1=array("platform" => "telegram", "title" => "Thank you for your Replies", "subtitle"=>"Our travel assistant will reach you to help you.", "type"=>1);
+                        $msg1=array("platform" => "telegram", "imageUrl" =>"https://image.freepik.com/free-vector/watercolors-with-thank-you-text_1017-7279.jpg", "title" => "Thank you for your Replies", "subtitle"=>"Our travel assistant will reach you to help you.", "type"=>1);
                         $msg2=array("platform" => "telegram", "speech" => "Feel free to reach out to us at ticket@skykrutravel.com or call us on +91-8593944446 / +91-495-485-0444", "type"=>0);
                         $messages = array($msg1,$msg2);
                         $curl = curl_init();
