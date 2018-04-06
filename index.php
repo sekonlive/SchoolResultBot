@@ -28,9 +28,11 @@ $update = json_decode($response, true);
             
                         $sendSMSLink="http://api.msg91.com/api/sendhttp.php?sender=SKYKRU&route=4&mobiles=9567302424&authkey=141154Acpa1W8XVq58a15ead&country=0&message=Enquery : ".$Name." Contact Number: ".$mobileno.". Assist urgently";
                         $speech = "Status for ".$AppNo."\n".$getStatusUrl;
-                        $displayText = array("John", "Mary", "Peter", "Sally");
-                        $messages = array("platform": "telegram","speech": "Text response","type": 0);
+                        
                         $source = "VisaStatus";
+                        $msg1=array("platform" => "telegram", "Speech" => "Bla Bla Bla");
+                        $msg2=array("platform" => "telegram", "Speech" => "Bla Bla Bla");
+                        $messages = array($msg1,$msg2);
                         $curl = curl_init();
                         curl_setopt($curl, CURLOPT_URL, $sendSMSLink);
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
