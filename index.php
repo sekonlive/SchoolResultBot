@@ -27,16 +27,14 @@ $update = json_decode($response, true);
         case 'QueryTicket' :   
             
                         $sendSMSLink="http://api.msg91.com/api/sendhttp.php?sender=SKYKRU&route=4&mobiles=9567302424&authkey=141154Acpa1W8XVq58a15ead&country=0&message=Enquery : ".$Name." Contact Number: ".$mobileno.". Assist urgently";
-                        $speech = "Query: Name:".$Name."\nContact:".$mobileno."\n".$sendSMSLink;
+                        $speech = "array("John", "Mary", "Peter", "Sally");
                         $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
                         $source = "VisaStatus";
-      $curl = curl_init();
-      curl_setopt($curl, CURLOPT_URL, $sendSMSLink);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-    $result = curl_exec($curl);
-
-    curl_close($curl);
+                        $curl = curl_init();
+                        curl_setopt($curl, CURLOPT_URL, $sendSMSLink);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                        $result = curl_exec($curl);
+                        curl_close($curl);
                         break;
         case 'PostList' :   
             
