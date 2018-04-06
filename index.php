@@ -80,7 +80,7 @@ $update = json_decode($response, true);
                         break;
     }
     
-    sendMessage(array("source"=>$source,"speech"=>$speech,"displayText"=>$displayText,"contextOut"=> array()));
+    sendMessage(array("source"=>$source,"speech"=>$speech,"messages"=>$messages,"displayText"=>$displayText,"contextOut"=> array()));
                         
     
       
