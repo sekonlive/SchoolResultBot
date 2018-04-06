@@ -13,11 +13,20 @@ $update = json_decode($response, true);
     $UserId=$update["result"]["parameters"]["UserId"];
     $Spon=$update["result"]["parameters"]["Spon"];
     $pnr = $update["result"]["parameters"]["pnr"];
+    $mobileno = $update["result"]["parameters"]["Mobile"];
+    $Name = $update["result"]["parameters"]["Name"];
     switch($actionName)
     {
         case 'VisaStatus' :   
             
                         $getStatusUrl="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.QRY_RESULT_VISA_PRINT.show?p_arg_names=_show_header&p_arg_values=YES&p_arg_names=app_dt1&p_arg_values=&p_arg_names=app_dt2&p_arg_values=&p_arg_names=app_id&p_arg_values=".$AppNo."&p_arg_names=spn&p_arg_values=";
+                        $speech = "Status for ".$AppNo."\n".$getStatusUrl;
+                        $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
+                        $source = "VisaStatus";
+                        break;
+        case 'QueryTicket' :   
+            
+                        $sendSMSLink="http://api.msg91.com/api/sendhttp.php?sender=SKYKRU&route=4&mobiles=9567302424&authkey=141154Acpa1W8XVq58a15ead&country=0&message=Enquery : ".$Name." Contact Number: ".$mobileno.". Assist urgently";
                         $speech = "Status for ".$AppNo."\n".$getStatusUrl;
                         $displayText = "Status for ".$AppNo."\n".$getStatusUrl;
                         $source = "VisaStatus";
