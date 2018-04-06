@@ -13,7 +13,7 @@ $update = json_decode($response, true);
     $UserId=$update["result"]["parameters"]["UserId"];
     $Spon=$update["result"]["parameters"]["Spon"];
     $pnr = $update["result"]["parameters"]["pnr"];
-    $mobileno = $update["result"]["parameters"]["Mobile"];
+    $mobileno = $update["result"]["parameters"]["mobile"];
     $Name = $update["result"]["parameters"]["Name"];
     switch($actionName)
     {
