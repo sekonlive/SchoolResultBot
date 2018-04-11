@@ -54,8 +54,8 @@ $update = json_decode($response, true);
                         break;
            case 'AddEntry'   : 
                           
-                   $speech = "OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax;
-                        $displayText ="OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax." ".$Client;
+                   $speech = "Failed:  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
+                        $displayText ="Failed:  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                  
                         $source = "OTBNetwork";
                         break;
