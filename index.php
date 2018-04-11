@@ -18,7 +18,7 @@ function processMessage($update) {
                         $content=file_get_contents($EntryUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
-        if($StatusCode=="200"){
+        if($StatusCode==200){
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Done\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
