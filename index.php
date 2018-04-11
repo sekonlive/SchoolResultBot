@@ -60,7 +60,7 @@ $update = json_decode($response, true);
                         $content=file_get_contents($getStatusUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
-                        if($StatusCode==200){
+                        if($StatusCode=='200'){
                             $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                             $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                         }else{
