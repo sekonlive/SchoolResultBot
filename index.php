@@ -12,6 +12,7 @@ function processMessage($update) {
 }
  
 function sendMessage($parameters) {
+    header('Content-type: application/json');
     echo json_encode($parameters);
 }
  
@@ -22,4 +23,3 @@ if (isset($update["result"]["action"])) {
 }
 
 ?>
-    © 2018 GitHub, Inc.
