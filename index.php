@@ -14,7 +14,7 @@ $update = json_decode($response, true);
     $Spon=$update["result"]["parameters"]["Spon"];
     $pnr = $update["result"]["parameters"]["PNR"];
     $pax = $update["result"]["parameters"]["NoPax"];
-    $date = $update["result"]["parameters"]["date"];
+    //$date = $update["result"]["parameters"]["date"];
     $Airline = $update["result"]["parameters"]["Airline"];
     $Client = $update["result"]["parameters"]["Client"];
     $mobileno = $update["result"]["parameters"]["mobile"];
@@ -56,7 +56,7 @@ $update = json_decode($response, true);
            case 'AddEntry'   : 
                           
                         
-                        $getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status."&date=".$date;
+                        $getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status;
                         $content=file_get_contents($getStatusUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
