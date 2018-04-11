@@ -55,9 +55,8 @@ $update = json_decode($response, true);
                         break;
            case 'AddEntry'   : 
                           
-        $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                            $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                      
+                        $speech = "Done";
+                        $displayText = "Done";
                         $source = "OTBEntry";
                         break;
      case 'otbStatus'   : 
