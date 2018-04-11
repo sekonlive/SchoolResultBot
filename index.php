@@ -14,6 +14,7 @@ $update = json_decode($response, true);
     $Spon=$update["result"]["parameters"]["Spon"];
     $pnr = $update["result"]["parameters"]["PNR"];
     $pax = $update["result"]["parameters"]["NoPax"];
+    $date = $update["result"]["parameters"]["date"];
     $Airline = $update["result"]["parameters"]["Airline"];
     $Client = $update["result"]["parameters"]["Client"];
     $mobileno = $update["result"]["parameters"]["mobile"];
@@ -48,23 +49,23 @@ $update = json_decode($response, true);
                         $AppList = rtrim($AppList);
                         $output = str_replace(PHP_EOL, ':', $AppList);
                         $output="https://www.gdrfa.ae/portal/pls/portal/INIMM_DB.DBPK_CALL.VISA_POSTING?p_idstring=".$output."&p_apptp=1&p_user_login=".$UserId."&p_spon=".$Spon."&p_rtm=1";
-
                         $speech = "Post Link for".$AppList." \n URL: ".$output;
                         $displayText = "Post Link for".$AppList." \n URL: ".$output;
                         $source = "PostList";
                         break;
            case 'AddEntry'   : 
                           
-                        $getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status;
+                        
+                        $getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status."&date=".$date;
                         $content=file_get_contents($getStatusUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
                         if($StatusCode=="200"){
-                            $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client." ".$StatusCode;
-                            $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client." ".$StatusCode;
+                            $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
+                            $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                         }else{
-                            $speech = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client." ".$StatusCode;
-                            $displayText = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client." ".$StatusCode;
+                            $speech = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
+                            $displayText = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                         }
                         $source = "OTBNetwork";
                         break;
@@ -117,3 +118,5 @@ if (isset($update["result"]["action"]))
      processMessage();
 }
 ?>
+
+    © 2018 GitHub, Inc.
