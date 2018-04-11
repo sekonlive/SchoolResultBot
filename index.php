@@ -12,7 +12,9 @@ $update = json_decode($response, true);
     $AppList=$update["result"]["parameters"]["AppList"];
     $UserId=$update["result"]["parameters"]["UserId"];
     $Spon=$update["result"]["parameters"]["Spon"];
-    $pnr = $update["result"]["parameters"]["pnr"];
+    $pnr = $update["result"]["parameters"]["PNR"];
+    $pax = $update["result"]["parameters"]["NoPax"];
+    $Airline = $update["result"]["parameters"]["Airline"];
     $mobileno = $update["result"]["parameters"]["mobile"];
     $Name = $update["result"]["parameters"]["Name"];
     switch($actionName)
@@ -48,6 +50,13 @@ $update = json_decode($response, true);
                         $speech = "Post Link for".$AppList." \n URL: ".$output;
                         $displayText = "Post Link for".$AppList." \n URL: ".$output;
                         $source = "PostList";
+                        break;
+           case 'AddEntry'   : 
+                          
+                   $speech = "OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax;
+                        $displayText ="OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax;
+                 
+                        $source = "OTBNetwork";
                         break;
      case 'otbStatus'   : 
                           $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
