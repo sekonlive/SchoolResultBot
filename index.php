@@ -18,6 +18,7 @@ $update = json_decode($response, true);
     $Client = $update["result"]["parameters"]["Client"];
     $mobileno = $update["result"]["parameters"]["mobile"];
     $Name = $update["result"]["parameters"]["Name"];
+    $status = "Done";
     switch($actionName)
     {
         case 'VisaStatus' :   
@@ -56,7 +57,8 @@ $update = json_decode($response, true);
                           
                    $speech = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                         $displayText = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                 
+                 $getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status;
+      $content=file_get_contents($getStatusUrl);
                         $source = "OTBNetwork";
                         break;
      case 'otbStatus'   : 
