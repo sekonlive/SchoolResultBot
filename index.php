@@ -1,4 +1,6 @@
 <?php 
+
+ini_set("allow_url_open", 1);
 function processMessage($update) {
     
     
@@ -9,12 +11,30 @@ function processMessage($update) {
         $noPax = $update["result"]["parameters"]["noPax"];
         $date = $update["result"]["parameters"]["date"];
         $client = $update["result"]["parameters"]["client"];
+        $status = "Done";
+        
+        
+        $EntryUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$airline."&no_pax=".$noPax."&client=".$client."&status=".$status."&date=".$date;
+                        $content=file_get_contents($EntryUrl);
+                        $Obj=json_decode($content, true);
+                        $StatusCode=$Obj['StatusCode'];
+        if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "REVIEW\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
-            "displayText" => "REVIEW\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "speech" => "Done\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "displayText" => "Done\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
             "contextOut" => array()
         ));
+        }else{
+            
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "displayText" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "contextOut" => array()
+        ));
+            
+        }
     }
 }
  
