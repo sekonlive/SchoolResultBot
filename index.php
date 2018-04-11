@@ -57,6 +57,7 @@ $update = json_decode($response, true);
                           
                         $speech = "Done";
                         $displayText = "Done";
+      $messages ="";
                         $source = "OTBEntry";
                         break;
      case 'otbStatus'   : 
