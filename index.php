@@ -1,11 +1,14 @@
 <?php 
-
 function processMessage($update) {
-    if($update["result"]["action"] == "Test"){
+    
+    
+    if($update["result"]["action"] == "AddEntry"){
+        
+        $pnr = $update["result"]["parameters"]["pnr"];
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Hello from webhook",
-            "displayText" => "Hello from webhook",
+            "speech" => "Hello from ".$pnr,
+            "displayText" => "Hello from ".$pnr,
             "contextOut" => array()
         ));
     }
@@ -21,5 +24,4 @@ $update = json_decode($update_response, true);
 if (isset($update["result"]["action"])) {
     processMessage($update);
 }
-
 ?>
