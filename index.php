@@ -1,7 +1,7 @@
 <?php 
 
 function processMessage($update) {
-    if($update["result"]["action"] == "AddEntry"){
+    if($update["result"]["action"] == "Test"){
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Hello from webhook",
