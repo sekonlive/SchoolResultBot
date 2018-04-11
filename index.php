@@ -67,6 +67,9 @@ $update = json_decode($response, true);
                             $speech = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                             $displayText = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                         }
+        $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
+                            $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
+                      
                         $source = "OTBNetwork";
                         break;
      case 'otbStatus'   : 
