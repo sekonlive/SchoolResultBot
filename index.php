@@ -5,10 +5,14 @@ function processMessage($update) {
     if($update["result"]["action"] == "AddEntry"){
         
         $pnr = $update["result"]["parameters"]["pnr"];
+        $airline = $update["result"]["parameters"]["airline"];
+        $noPax = $update["result"]["parameters"]["noPax"];
+        $date = $update["result"]["parameters"]["date"];
+        $client = $update["result"]["parameters"]["client"];
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Hello from ".$pnr,
-            "displayText" => "Hello from ".$pnr,
+            "speech" => "REVIEW\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "displayText" => "REVIEW\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
             "contextOut" => array()
         ));
     }
