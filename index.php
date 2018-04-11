@@ -15,6 +15,7 @@ $update = json_decode($response, true);
     $pnr = $update["result"]["parameters"]["PNR"];
     $pax = $update["result"]["parameters"]["NoPax"];
     $Airline = $update["result"]["parameters"]["Airline"];
+    $Client = $update["result"]["parameters"]["Client"];
     $mobileno = $update["result"]["parameters"]["mobile"];
     $Name = $update["result"]["parameters"]["Name"];
     switch($actionName)
@@ -54,7 +55,7 @@ $update = json_decode($response, true);
            case 'AddEntry'   : 
                           
                    $speech = "OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax;
-                        $displayText ="OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax;
+                        $displayText ="OTB updation Failed for the PNR : ".$Airline." ".$pnr." ".$pax." ".$Client;
                  
                         $source = "OTBNetwork";
                         break;
