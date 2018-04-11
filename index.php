@@ -31,7 +31,8 @@ function processMessage($update) {
             "source" => $update["result"]["source"],
             "speech" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
             "displayText" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
-            "contextOut" => array()
+            "contextOut" => array(),
+            "messages" => $Card
         ));
             
         }
