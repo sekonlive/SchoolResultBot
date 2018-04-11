@@ -55,22 +55,10 @@ $update = json_decode($response, true);
                         break;
            case 'AddEntry'   : 
                           
-                        
-                        //$getStatusUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$Airline."&no_pax=".$pax."&client=".$Client."&status=".$status;
-                      //  $content=file_get_contents($getStatusUrl);
-                       // $Obj=json_decode($content, true);
-                      //$StatusCode=$Obj['StatusCode'];
-                    //    if($StatusCode=="200"){
-                     //       $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                     //       $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                 //       }else{
-                      //      $speech = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-                     //       $displayText = "Failed \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
-           //             }
         $speech = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                             $displayText = "Done \n ---------- \n  Airline: ".$Airline." \n PNR: ".$pnr."\n Pax: ".$pax."\n Client: ".$Client;
                       
-                        $source = "OTBNetwork";
+                        $source = "OTBEntry";
                         break;
      case 'otbStatus'   : 
                           $getStatusUrl="http://manage.otb-network.com/application/API/Status.php?pnr=".urlencode($pnr);
