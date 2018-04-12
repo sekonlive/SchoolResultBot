@@ -18,20 +18,26 @@ function processMessage($update) {
                         $content=file_get_contents($EntryUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
-        if($StatusCode==200){
+                        $fpnr = $Obj["pnr"];
+                        $fairline = $Obj["airline"];
+                        $fnoPax = $Obj["noPax"];
+                        $fdate = $Obj["date"];
+                        $fclient = $Obj["client"];
+                        if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Done\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
-            "displayText" => "Done\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
+            "speech" => "Done\n-----------\nDate: ".$date."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "displayText" => "Done\n-----------\nDate: ".$date."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array()
         ));
         }else{
-          //  $Card=array("platform" => "telegram", "title" => "DataBase Updated","subtitle" => "Test","imageUrl" => "" "type"=>1);
+            $Card=array("platform" => "telegram", "title" => "DataBase Updated","subtitle" => "Test","imageUrl" => "" "type"=>1);
             sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
             "displayText" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
-            "contextOut" => array()
+            "contextOut" => array(),
+            "messages" => $Card
         ));
             
         }
