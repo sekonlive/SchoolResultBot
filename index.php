@@ -15,6 +15,7 @@ function processMessage($update) {
         
         
         $EntryUrl="http://manage.otb-network.com/application/GETProcessing.php?PNR=".$pnr."&airline=".$airline."&no_pax=".$noPax."&client=".$client."&status=".$status."&date=".$date;
+                        $EntryUrl=urlencode($EntryUrl);
                         $content=file_get_contents($EntryUrl);
                         $Obj=json_decode($content, true);
                         $StatusCode=$Obj['StatusCode'];
