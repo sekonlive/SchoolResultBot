@@ -31,13 +31,12 @@ function processMessage($update) {
             "contextOut" => array()
         ));
         }else{
-            $Card=array("platform" => "telegram", "title" => "DataBase Updated","subtitle" => "Test","imageUrl" => "" "type"=>1);
+    
             sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
             "displayText" => "Failed\n-----------\nDate: ".$date."\nAirline: ".$airline."\nPnr: ".$pnr."\nNo of Pax: ".$noPax."\nClient: ".$client,
-            "contextOut" => array(),
-            "messages" => $Card
+            "contextOut" => array()
         ));
             
         }
