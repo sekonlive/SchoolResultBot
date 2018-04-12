@@ -26,8 +26,8 @@ function processMessage($update) {
                         if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Done\n-----------\nDate: ".$date."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
-            "displayText" => "Done\n-----------\nDate: ".$date."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "speech" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "displayText" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array()
         ));
         }else{
