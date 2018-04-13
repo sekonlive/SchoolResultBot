@@ -54,7 +54,7 @@ function processMessage($update) {
         $fclient = $update["result"]["parameters"]["client"];
         $fclient = urlencode($fclient);
         $status = "Done";
-        $fdate = date("d-M-18", strtotime($fdate));
+        $fdate = date("d M 18", strtotime($fdate));
                    
         sendMessage(array(
             "source" => $update["result"]["source"],
