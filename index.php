@@ -43,6 +43,27 @@ function processMessage($update) {
             
         }
     }
+    
+        if($update["result"]["action"] == "Review"){
+        
+        $fpnr = $update["result"]["parameters"]["pnr"];
+        $fpnr = urlencode($fpnr);
+        $fairline = $update["result"]["parameters"]["airline"];
+        $fnoPax = $update["result"]["parameters"]["noPax"];
+        $fdate = $update["result"]["parameters"]["date"];
+        $fclient = $update["result"]["parameters"]["client"];
+        $fclient = urlencode($fclient);
+        $status = "Done";
+        
+                   
+        sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "**Review** \n **-----------** \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "displayText" => "**Review** \n ** -----------** \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "contextOut" => array()
+        ));
+        
+    }
 }
  
 function sendMessage($parameters) {
