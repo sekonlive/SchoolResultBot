@@ -61,7 +61,13 @@ function processMessage($update) {
         $msg2 = array("speech" => " Review 1  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                           "type" => 0,
                         "platform" => "telegram");
-        $messages = array($msg1,$msg2);           
+            $Tcard = array("title" => " Review ",
+                           "subtitle" => "bla bla",
+                           "imageUrl" => "",
+                           "buttons" => [],
+                          "type" => 1,
+                        "platform" => "telegram");
+        $messages = array($msg1,$msg2,$Tcard);           
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
