@@ -67,7 +67,12 @@ function processMessage($update) {
                            "buttons" => [],
                           "type" => 1,
                         "platform" => "telegram");
-        $messages = array($msg1,$Tcard);           
+            
+            $TQuick = array("title" => " Review ",
+                           "replies" => ["Test"],
+                          "type" => 2,
+                        "platform" => "telegram");
+        $messages = array($msg1,$Tcard,$TQuick);           
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
