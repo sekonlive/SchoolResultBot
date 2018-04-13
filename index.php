@@ -64,7 +64,7 @@ function processMessage($update) {
             $Tcard = array("title" => " Review ",
                            "subtitle" => "\n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                            "imageUrl" => "",
-                           "buttons" => [],
+                           "buttons" => array(array("postback" => "" , "text" => "Okay, Proceed"),array("postback" => "" , "text" => "Cancel")),
                           "type" => 1,
                         "platform" => "telegram");
             
