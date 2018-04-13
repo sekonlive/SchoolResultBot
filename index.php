@@ -25,6 +25,7 @@ function processMessage($update) {
                         $fnoPax = $Obj["noPax"];
                         $fdate = $Obj["date"];
                         $fclient = $Obj["client"];
+                        $fdate = date("d M 18", strtotime($fdate));
                         if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
