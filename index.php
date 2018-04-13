@@ -58,7 +58,7 @@ function processMessage($update) {
         $fdate = date("d M 18", strtotime($fdate));
         $messages = array("speech" => "Test",
                           "type" => 0);
-                   
+        $messages = array($messages);           
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
