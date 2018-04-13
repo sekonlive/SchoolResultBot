@@ -58,8 +58,9 @@ function processMessage($update) {
         $fdate = date("d M 18", strtotime($fdate));
         $msg1 = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                           "type" => 0);
-        $msg2 = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
-                          "type" => 0);
+        $msg2 = array("speech" => " Review 1  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                          "type" => 0,
+                        "platform" => "telegram");
         $messages = array($msg1,$msg2);           
         sendMessage(array(
             "source" => $update["result"]["source"],
