@@ -58,8 +58,8 @@ function processMessage($update) {
                    
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "**Review** \n **-----------** \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
-            "displayText" => "**Review** \n ** -----------** \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "speech" => "*Review* \n *-----------* \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "displayText" => "*Review* \n * -----------* \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array()
         ));
         
