@@ -68,8 +68,8 @@ function processMessage($update) {
                           "type" => 1,
                         "platform" => "telegram");
             
-            $TQuick = array("title" => " Review ",
-                           "replies" => ["Test"],
+            $TQuick = array("title" => "Choose",
+                           "replies" => ["Okay, Proceed" , "Cancel"],
                           "type" => 2,
                         "platform" => "telegram");
         $messages = array($msg1,$Tcard,$TQuick);           
