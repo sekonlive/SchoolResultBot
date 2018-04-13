@@ -32,7 +32,7 @@ function processMessage($update) {
             "speech" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "displayText" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array(),
-            "resetContexts",True
+            "resetContexts" => True
         ));
         }else{
     
