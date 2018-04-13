@@ -56,7 +56,8 @@ function processMessage($update) {
         $fclient = urlencode($fclient);
         $status = "Done";
         $fdate = date("d M 18", strtotime($fdate));
-        $messages = array();
+        $messages = array("speech" => "Test",
+                          "type" => 0);
                    
         sendMessage(array(
             "source" => $update["result"]["source"],
