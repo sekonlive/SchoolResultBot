@@ -30,7 +30,7 @@ function processMessage($update) {
                           "type" => 0);
                         $TSuccess = array("title" => " Success",
                            "subtitle" => "Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
-                           "imageUrl" => "",
+                           "imageUrl" => "http://www.acemetrix.com/wp-content/themes/acemetrix/images/video/green_purple/green_bg.jpg",
                            "buttons" => array(array("postback" => "" , "text" => "New Entry")),
                           "type" => 1,
                         "platform" => "telegram");
