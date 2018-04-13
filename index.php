@@ -26,13 +26,23 @@ function processMessage($update) {
                         $fdate = $Obj["date"];
                         $fclient = $Obj["client"];
                         $fdate = date("d M 18", strtotime($fdate));
+                        $Success = array("speech" => " Success \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                          "type" => 0);
+                        $TSuccess = array("title" => " Success",
+                           "subtitle" => "Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                           "imageUrl" => "",
+                           "buttons" => array(array("postback" => "" , "text" => "New Entry")),
+                          "type" => 1,
+                        "platform" => "telegram");
+                        $messages = array($Success,$TSuccess);
                         if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "displayText" => "Done\n-----------\nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array(),
-            "resetContexts" => True
+            "resetContexts" => True,
+            "messages" => $messages
         ));
         }else{
     
@@ -63,7 +73,7 @@ function processMessage($update) {
           //                "type" => 0,
          //               "platform" => "telegram");
             $Tcard = array("title" => " Review ",
-                           "subtitle" => "\n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                           "subtitle" => "Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                            "imageUrl" => "",
                            "buttons" => array(array("postback" => "" , "text" => "Okay, Proceed"),array("postback" => "" , "text" => "Cancel")),
                           "type" => 1,
