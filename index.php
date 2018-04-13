@@ -56,9 +56,11 @@ function processMessage($update) {
         $fclient = urlencode($fclient);
         $status = "Done";
         $fdate = date("d M 18", strtotime($fdate));
-        $messages = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+        $msg1 = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                           "type" => 0);
-        $messages = array($messages);           
+        $msg2 = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                          "type" => 0);
+        $messages = array($msg1,$msg2);           
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
