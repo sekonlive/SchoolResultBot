@@ -62,7 +62,7 @@ function processMessage($update) {
           //                "type" => 0,
          //               "platform" => "telegram");
             $Tcard = array("title" => " Review ",
-                           "subtitle" => "Review 1  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                           "subtitle" => "\n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                            "imageUrl" => "",
                            "buttons" => [],
                           "type" => 1,
