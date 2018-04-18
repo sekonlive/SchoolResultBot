@@ -68,11 +68,8 @@ function processMessage($update) {
         
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax:,
-            "contextOut" => array(),
-            "resetContexts" => True,
-            "messages" => $messages
+            "speech" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax,
+            "displayText" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax:
         ));
         
             
