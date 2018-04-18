@@ -64,14 +64,44 @@ function processMessage($update) {
         $NoPax = $update["result"]["parameters"]["NoPax"];
         
         
-        
+        $EntryUrl="http://manage.otb-network.com/application/TicketAdd.php?Date=".$Date."&Cost=".$Cost."&Sell=".$Sell."&NoPax=".$NoPax;
+                        
+                        $content=file_get_contents($EntryUrl);
+                        $Obj=json_decode($content, true);
+                        $StatusCode=$Obj['StatusCode'];
+                        $fDate = $Obj["Date"];
+                        $fCost = $Obj["Cost"];
+                        $fSell = $Obj["Sell"];
+                        $fNoPax = $Obj["NoPax"];
+                        $fDate = date("d M Y", strtotime($fDate));
+                        $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                          "type" => 0);
+                        $TSuccess = array("title" => " Success",
+                           "subtitle" => "Date: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                           "imageUrl" => "http://www.acemetrix.com/wp-content/themes/acemetrix/images/video/green_purple/green_bg.jpg",
+                           "buttons" => array(array("postback" => "" , "text" => "New Entry")),
+                          "type" => 1,
+                        "platform" => "telegram");
+                        $messages = array($Success,$TSuccess);
+                        if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax,
-            "displayText" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax
+            "speech" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "contextOut" => array(),
+            "resetContexts" => True,
+            "messages" => $messages
         ));
-        
+        }else{
+    
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "contextOut" => array()
+        ));
             
+        }
        
     }
     
