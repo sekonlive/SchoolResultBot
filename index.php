@@ -1,5 +1,4 @@
 <?php 
-
 ini_set("allow_url_open", 1);
 function processMessage($update) {
     
@@ -69,7 +68,7 @@ function processMessage($update) {
         sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax,
-            "displayText" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax:
+            "displayText" => "Done\n-----------\nDate: ".$Date."\n Cost: ".$Cost."\nPnr: ".$Sell."\nNo of Pax: ".$NoPax
         ));
         
             
