@@ -174,7 +174,7 @@ function processMessage($update) {
                         $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Report ",
-                           "subtitle" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
