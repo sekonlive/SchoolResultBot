@@ -96,8 +96,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
-            "displayText" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
+            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
             "contextOut" => array()
         ));
             
@@ -143,8 +143,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "speech" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
+            "displayText" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
             "contextOut" => array()
         ));
             
