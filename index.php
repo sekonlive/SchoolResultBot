@@ -192,8 +192,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Daily Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
-            "displayText" => "Daily Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
+            "speech" => "Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
+            "displayText" => "Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
             "contextOut" => array()
         ));
             
