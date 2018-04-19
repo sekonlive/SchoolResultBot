@@ -105,6 +105,53 @@ function processMessage($update) {
        
     }
     
+    if($update["result"]["action"] == "TicketDaily"){
+        
+        $Date = $update["result"]["parameters"]["Date"];
+        
+        
+        
+        $fetchData="http://manage.otb-network.com/application/API/TicketDaily.php?Date=".$Date;
+                        
+                        $content=file_get_contents($fetchData);
+                        $Obj=json_decode($content, true);
+                        $StatusCode=$Obj['StatusCode'];
+                        $fErrorType = $Obj["ErrorType"];
+                        $fDate = $Obj["Date"];
+                        $fCost = $Obj["Cost"];
+                        $fSell = $Obj["Sell"];
+                        $fNoPax = $Obj["NoPax"];
+                        $fDate = date("d M y", strtotime($fDate));
+                        $Success = array("speech" => " Daily Report \n ----------- \n Date: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                          "type" => 0);
+                        $TSuccess = array("title" => " Daily Report ",
+                           "subtitle" => "Date: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                           "buttons" => array(array("postback" => "" , "text" => "New Entry")),
+                          "type" => 1,
+                        "platform" => "telegram");
+                        $messages = array($Success,$TSuccess);
+                        if($fErrorType=="200"){
+        sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Daily Report Daily Report \n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Daily Report \n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "contextOut" => array(),
+            "resetContexts" => True,
+            "messages" => $messages
+        ));
+        }else{
+    
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "contextOut" => array()
+        ));
+            
+        }
+       
+    }
+    
         if($update["result"]["action"] == "Review"){
         
         $fpnr = $update["result"]["parameters"]["pnr"];
