@@ -92,12 +92,12 @@ function processMessage($update) {
             "resetContexts" => True,
             "messages" => $messages
         ));
-        }else{
+        }else if($StatusCode=="400"){
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "speech" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
+            "displayText" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
             "contextOut" => array()
         ));
             
