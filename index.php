@@ -154,6 +154,8 @@ function processMessage($update) {
     
      if($update["result"]["action"] == "TicketMonthly"){
         
+         
+         
         $Date = $update["result"]["parameters"]["Date"];
         
         
@@ -171,10 +173,10 @@ function processMessage($update) {
                         $fNoPax = $Obj["NoPax"];
                         $fsDate = date("d M ", strtotime($fsDate));
                         $feDate = date("d M Y", strtotime($feDate));
-                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Report ",
-                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -182,8 +184,8 @@ function processMessage($update) {
                         if($fErrorType=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Report \n-----------\nReport \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "speech" => "Report \n-----------\nReport \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
             "messages" => $messages
