@@ -127,7 +127,7 @@ function processMessage($update) {
                         $Success = array("speech" => " Daily Report \n ----------- \nDate: ".$fDate."\nCost: ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Daily Report ",
-                           "subtitle" => "Date: ".$fDate."\nCost: ₹".$fCost."\n*Quoted price*: ₹".$fSell."\nProfit: ₹".$fProfit."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "\nDate: ".$fDate."\nCost: ₹".$fCost."\n*Quoted price*: ₹".$fSell."\nProfit: ₹".$fProfit."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -146,8 +146,9 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
-            "displayText" => "Daily Report\n-----------\nDate: ".$fDate."\n No Entry Founded",
+            "speech" => "```No Entry Founded on ".$fDate."```",
+            "displayText" => "```No Entry Founded on ".$fDate."```",
+             "parse_mode"=> "Markdown",
             "contextOut" => array()
         ));
             
