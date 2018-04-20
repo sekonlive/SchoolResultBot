@@ -127,7 +127,7 @@ function processMessage($update) {
                           "type" => 0);
                         $TSuccess = array("title" => " Daily Report ",
                            "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
-                           "buttons" => array(array("postback" => "" , "text" => "New Entry")),
+                           "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
                         $messages = array($Success,$TSuccess);
