@@ -1,10 +1,22 @@
 <?php 
 ini_set("allow_url_open", 1);
-session_start();
-$_SESSION["Test"]="Test";
+
 function processMessage($update) {
     
-    
+    if($update["result"]["action"] == "SignOn"){
+        
+        session_start();
+        "Sign On Successfully"
+           sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Sign On Successfully "."Sign On Successfully",
+            "displayText" => "Sign On Successfully "."Sign On Successfully",
+            "contextOut" => array(),
+            "resetContexts" => True
+            
+        ));
+        
+    }
     if($update["result"]["action"] == "AddEntry"){
         
         $pnr = $update["result"]["parameters"]["pnr"];
