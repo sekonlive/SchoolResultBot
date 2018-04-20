@@ -6,11 +6,11 @@ function processMessage($update) {
     if($update["result"]["action"] == "SignOn"){
         
         session_start();
-        "Sign On Successfully"
+        $_SESSION["status"]="Sign On Successfully";
            sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Sign On Successfully "."Sign On Successfully",
-            "displayText" => "Sign On Successfully "."Sign On Successfully",
+            "speech" => "Sign On Successfully ".$_SESSION["status"],
+            "displayText" => "Sign On Successfully ".$_SESSION["status"],
             "contextOut" => array(),
             "resetContexts" => True
             
@@ -160,8 +160,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "`No Entry Founded on` ".$fDate.$_SESSION["Test"],
-            "displayText" => "`No Entry Founded on` ".$fDate.$_SESSION["Test"],
+            "speech" => "`No Entry Founded on` ".$fDate.$_SESSION["status"],
+            "displayText" => "`No Entry Founded on` ".$fDate.$_SESSION["status"],
              "parse_mode"=> "Markdown",
             "contextOut" => array()
         ));
