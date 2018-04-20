@@ -5,7 +5,7 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "SignOn"){
         
-  $Username = $update["result"]["parameters"]["Usename"];
+  $Username = $update["result"]["parameters"]["username"];
   $Pin = $update["result"]["parameters"]["Pin"];
         if($Username=="Shihab" && $Pin==1234 ){
            sendMessage(array(
