@@ -17,6 +17,17 @@ function processMessage($update) {
         ));
         
     }
+    
+       if($update["result"]["action"] == "DoSomething"){
+        
+        $LogStatus = $update["result"]["contexts"]["parameters"]["status"];
+            
+       sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Status".$LogStatus,
+            "displayText" => "Status".$LogStatus
+        ));
+    }
     if($update["result"]["action"] == "AddEntry"){
         
         $pnr = $update["result"]["parameters"]["pnr"];
