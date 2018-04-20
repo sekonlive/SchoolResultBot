@@ -16,6 +16,19 @@ function processMessage($update) {
         ));
         
     }
+        if($update["result"]["action"] == "SignOut"){
+        
+        session_start();
+        $_SESSION["status"]="Sign On Successfully";
+           sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Sign On Successfully ",
+            "displayText" => "Sign On Successfully ",
+            "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"NoUser")))
+            
+        ));
+        
+    }
     
        if($update["result"]["action"] == "DoSomething"){
         $LogStatus= "noUser";
