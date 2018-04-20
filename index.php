@@ -1,5 +1,7 @@
 <?php 
 ini_set("allow_url_open", 1);
+session_start();
+$_SESSION["Test"]="Test";
 function processMessage($update) {
     
     
@@ -146,8 +148,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "`No Entry Founded on` ".$fDate,
-            "displayText" => "`No Entry Founded on` ".$fDate,
+            "speech" => "`No Entry Founded on` ".$fDate.$_SESSION["Test"],
+            "displayText" => "`No Entry Founded on` ".$fDate.$_SESSION["Test"],
              "parse_mode"=> "Markdown",
             "contextOut" => array()
         ));
