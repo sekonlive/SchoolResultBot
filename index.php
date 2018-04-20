@@ -28,7 +28,7 @@ function processMessage($update) {
                         $Success = array("speech" => " Success \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                           "type" => 0);
                         $TSuccess = array("title" => " Success",
-                           "subtitle" => "Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                           "subtitle" => "Date: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                            "imageUrl" => "http://www.acemetrix.com/wp-content/themes/acemetrix/images/video/green_purple/green_bg.jpg",
                            "buttons" => array(array("postback" => "" , "text" => "New Entry")),
                           "type" => 1,
@@ -74,10 +74,10 @@ function processMessage($update) {
                         $fSell = $Obj["Sell"];
                         $fNoPax = $Obj["NoPax"];
                         $fDate = date("d M Y", strtotime($fDate));
-                        $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\n Cost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                        $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\nCost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Success",
-                           "subtitle" => "Date: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
                            "imageUrl" => "",
                            "buttons" => array(array("postback" => "" , "text" => "New Ticket")),
                           "type" => 1,
@@ -86,8 +86,8 @@ function processMessage($update) {
                         if($StatusCode=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Done\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "speech" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
             "messages" => $messages
@@ -96,8 +96,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Failed\n-----------\nDate: ".$fDate."\n Cost: ".$fCost."\nQuoted priceQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "speech" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted priceQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
             "contextOut" => array()
         ));
             
@@ -123,10 +123,10 @@ function processMessage($update) {
                         $fProfit = $fSell-$fCost;
                         $fNoPax = $Obj["NoPax"];
                         $fDate = date("d M y", strtotime($fDate));
-                        $Success = array("speech" => " Daily Report \n ----------- \n Date: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                        $Success = array("speech" => " Daily Report \n ----------- \nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Daily Report ",
-                           "subtitle" => "Date: ".$fDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(array("postback" => "" , "text" => "New Entry")),
                           "type" => 1,
                         "platform" => "telegram");
@@ -175,10 +175,10 @@ function processMessage($update) {
                         $fNoPax = $Obj["NoPax"];
                         $fsDate = date("d M ", strtotime($fsDate));
                         $feDate = date("d M Y", strtotime($feDate));
-                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Report ",
-                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -186,8 +186,8 @@ function processMessage($update) {
                         if($fErrorType=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Report \n-----------\nReport \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n Cost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+            "speech" => "Report \n-----------\nReport \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
             "messages" => $messages
@@ -216,13 +216,13 @@ function processMessage($update) {
         $fclient = urlencode($fclient);
         $status = "Done";
         $fdate = date("d M 18", strtotime($fdate));
-        $msg1 = array("speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+        $msg1 = array("speech" => " Review  \n ----------- \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                           "type" => 0);
-       // $msg2 = array("speech" => " Review 1  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+       // $msg2 = array("speech" => " Review 1  \n ----------- \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
           //                "type" => 0,
          //               "platform" => "telegram");
             $Tcard = array("title" => " Review ",
-                           "subtitle" => "Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+                           "subtitle" => "Date: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
                            "imageUrl" => "",
                            "buttons" => array(array("postback" => "" , "text" => "Okay, Proceed"),array("postback" => "" , "text" => "Cancel")),
                           "type" => 1,
@@ -235,8 +235,8 @@ function processMessage($update) {
         $messages = array($msg1,$Tcard);           
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => " Review  \n ----------- \n Date: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
-            "displayText" => "Review \n  ----------- \nDate: ".$fdate."\n Airline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "speech" => " Review  \n ----------- \nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
+            "displayText" => "Review \n  ----------- \nDate: ".$fdate."\nAirline: ".$fairline."\nPnr: ".$fpnr."\nNo of Pax: ".$fnoPax."\nClient: ".$fclient,
             "contextOut" => array(),
             "messages" => $messages
         ));
