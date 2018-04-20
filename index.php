@@ -21,12 +21,20 @@ function processMessage($update) {
        if($update["result"]["action"] == "DoSomething"){
         
         $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
-            
-       sendMessage(array(
+            if($LogStatus=="Success"){
+                
+                  sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Status".$LogStatus,
-            "displayText" => "Status".$LogStatus
-        ));
+            "speech" => "User successfully Loged",
+            "displayText" => "User successfully loged"
+        ));} 
+            }else
+       {
+                sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "No user found",
+            "displayText" => "No user found"
+        ));}
     }
     if($update["result"]["action"] == "AddEntry"){
         
