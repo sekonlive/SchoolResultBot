@@ -146,8 +146,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "```No Entry Founded on ".$fDate."```",
-            "displayText" => "```No Entry Founded on ".$fDate."```",
+            "speech" => "`No Entry Founded on ".$fDate."`",
+            "displayText" => "`No Entry Founded on ".$fDate."`",
              "parse_mode"=> "Markdown",
             "contextOut" => array()
         ));
