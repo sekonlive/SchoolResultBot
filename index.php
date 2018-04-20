@@ -150,6 +150,9 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "TicketDaily"){
         
+        
+        if($LogStatus=="Success"){
+        
         $Date = $update["result"]["parameters"]["Date"];
         
         
@@ -197,6 +200,16 @@ function processMessage($update) {
             
         }
        
+    }else{
+            
+             sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Please Log in to Access Daily Sales report.",
+            "displayText" => "Please Log in to Access Daily Sales report."
+        ));} 
+            
+            
+        }
     }
     
      if($update["result"]["action"] == "TicketMonthly"){
