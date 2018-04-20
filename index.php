@@ -5,7 +5,9 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "SignOn"){
         
-  
+  $Username = $update["result"]["parameters"]["Usename"];
+  $Pin = $update["result"]["parameters"]["Pin"];
+        if($Username=="Shihab" & $Pin==1234 ){
            sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Sign On Successfully ",
@@ -13,6 +15,15 @@ function processMessage($update) {
             "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
             
         ));
+    }else{
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Pin not match ",
+            "displayText" => "Pin not match ",
+            "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Error")))
+            
+            ));
+        }
         
     }
         if($update["result"]["action"] == "SignOut"){
@@ -214,7 +225,8 @@ function processMessage($update) {
     
      if($update["result"]["action"] == "TicketMonthly"){
         
-         
+         $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
+        if($LogStatus=="Success"){
          
         $Date = $update["result"]["parameters"]["Date"];
         
@@ -262,6 +274,15 @@ function processMessage($update) {
         ));
             
         }
+        }
+         else{
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Please Log in to Access Monthly Sales report.",
+            "displayText" => "Please Log in to Access Monthly Sales report."
+        )); 
+             
+         }
        
     }
     
