@@ -5,8 +5,7 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "SignOn"){
         
-        session_start();
-        $_SESSION["status"]="Sign On Successfully";
+  
            sendMessage(array(
             "source" => $update["result"]["source"],
             "speech" => "Sign On Successfully ",
@@ -17,13 +16,11 @@ function processMessage($update) {
         
     }
         if($update["result"]["action"] == "SignOut"){
-        
-        session_start();
-        $_SESSION["status"]="Sign On Successfully";
+     
            sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Sign On Successfully ",
-            "displayText" => "Sign On Successfully ",
+            "speech" => "Sign Out Successfully ",
+            "displayText" => "Sign Out Successfully ",
             "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"NoUser")))
             
         ));
