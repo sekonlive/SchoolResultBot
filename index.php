@@ -177,10 +177,10 @@ function processMessage($update) {
                         $fNoPax = $Obj["NoPax"];
                         $fsDate = date("d M ", strtotime($fsDate));
                         $feDate = date("d M Y", strtotime($feDate));
-                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n*Cost:* ".$fCost."\n*Quoted price:* ".$fSell."\n*Profit: ".$fProfit."\n*No of Pax:* ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Report ",
-                           "subtitle" => "\n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ".$fCost."\n*Quoted price:* ".$fSell."\n*Profit:* ".$fProfit."\n*No of Pax:* ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -188,10 +188,11 @@ function processMessage($update) {
                         if($fErrorType=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Report \n-----------\nReport \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+            "speech" => "*Report* \n-----------\nReport \n ----------- \n*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ".$fCost."\n*Quoted price:* ".$fSell."\nProfit: ".$fProfit."\n*No of Pax:* ".$fNoPax,
+            "displayText" => "*Report* \n ----------- \n*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ".$fCost."\n*Quoted price:* ".$fSell."\n*Profit:* ".$fProfit."\n*No of Pax:* ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
+             "parse_mode"=> "Markdown",
             "messages" => $messages
         ));
         }else{
