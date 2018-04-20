@@ -11,8 +11,7 @@ function processMessage($update) {
             "source" => $update["result"]["source"],
             "speech" => "Sign On Successfully ",
             "displayText" => "Sign On Successfully ",
-            "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
-            "resetContexts" => True
+            "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
             
         ));
         
