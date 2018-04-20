@@ -27,7 +27,7 @@ function processMessage($update) {
             "speech" => "User successfully Loged",
             "displayText" => "User successfully loged"
         ));} 
-            }else
+            else
        {
                 sendMessage(array(
             "source" => $update["result"]["source"],
@@ -35,6 +35,7 @@ function processMessage($update) {
             "displayText" => "No user found"
         ));}
     }
+
     if($update["result"]["action"] == "AddEntry"){
         
         $pnr = $update["result"]["parameters"]["pnr"];
