@@ -20,7 +20,7 @@ function processMessage($update) {
     
        if($update["result"]["action"] == "DoSomething"){
         
-        $LogStatus = $update["result"]["contexts"][0]["parameters"]["status"];
+        $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
             
        sendMessage(array(
             "source" => $update["result"]["source"],
