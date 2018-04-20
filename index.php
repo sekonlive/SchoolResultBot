@@ -123,10 +123,11 @@ function processMessage($update) {
                         $fProfit = $fSell-$fCost;
                         $fNoPax = $Obj["NoPax"];
                         $fDate = date("d M y", strtotime($fDate));
-                        $Success = array("speech" => " Daily Report \n ----------- \nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                       
+                        $Success = array("speech" => " Daily Report \n ----------- \nDate: ".$fDate."\nCost: ".$fCost."\n*Quoted price:* ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Daily Report ",
-                           "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+                           "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\n*Quoted price*: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -134,10 +135,11 @@ function processMessage($update) {
                         if($fErrorType=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Daily Report Daily Report \n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
-            "displayText" => "Daily Report \n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+            "speech" => "Daily Report Daily Report \n-----------\nDate: ".$fDate."\nCost: ".$fCost."\n*Quoted price*: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
+            "displayText" => "Daily Report \n-----------\nDate: ".$fDate."\nCost: ".$fCost."\n*Quoted price*: ".$fSell."\nProfit: ".$fProfit."\nNo of Pax: ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
+             "parse_mode"=> "Markdown",
             "messages" => $messages
         ));
         }else{
