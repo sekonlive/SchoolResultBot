@@ -9,9 +9,9 @@ function processMessage($update) {
         $_SESSION["status"]="Sign On Successfully";
            sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Sign On Successfully ".$_SESSION["status"],
-            "displayText" => "Sign On Successfully ".$_SESSION["status"],
-            "contextOut" => array(),
+            "speech" => "Sign On Successfully ",
+            "displayText" => "Sign On Successfully ",
+            "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
             "resetContexts" => True
             
         ));
@@ -192,10 +192,10 @@ function processMessage($update) {
                         $fNoPax = $Obj["NoPax"];
                         $fsDate = date("d M ", strtotime($fsDate));
                         $feDate = date("d M Y", strtotime($feDate));
-                        $Success = array("speech" => " Report \n ----------- \n Priode: ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
+                        $Success = array("speech" => " Report \n ----------- \n Period: ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
                           "type" => 0);
                         $TSuccess = array("title" => " Report ",
-                           "subtitle" => "*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit:* ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
+                           "subtitle" => "*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit:* ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
                            "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
@@ -203,8 +203,8 @@ function processMessage($update) {
                         if($fErrorType=="200"){
         sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "*Report* \n-----------\nReport \n ----------- \n*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
-            "displayText" => "*Report* \n ----------- \n*Priode:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit:* ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
+            "speech" => "*Report* \n-----------\nReport \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
+            "displayText" => "*Report* \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit:* ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
             "contextOut" => array(),
             "resetContexts" => True,
              "parse_mode"=> "Markdown",
@@ -214,8 +214,8 @@ function processMessage($update) {
     
             sendMessage(array(
             "source" => $update["result"]["source"],
-            "speech" => "Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
-            "displayText" => "Report\n-----------\nPriode: ".$fsDate." - ".$feDate."\n No Entry Founded",
+            "speech" => "Report\n-----------\nPeriod: ".$fsDate." - ".$feDate."\n No Entry Founded",
+            "displayText" => "Report\n-----------\nPeriod: ".$fsDate." - ".$feDate."\n No Entry Founded",
             "contextOut" => array()
         ));
             
