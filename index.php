@@ -261,6 +261,8 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "TicketDaily"){
         
+        $LogStatus="NoData";
+        
          $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
         if($LogStatus=="Success"){
         
