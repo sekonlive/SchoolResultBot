@@ -110,6 +110,56 @@ function processMessage($update) {
     }
     
     
+    if($update["result"]["action"] == "VisaClientEntry"){
+        
+        $Date = $update["result"]["parameters"]["Date"];
+        $Client = $update["result"]["parameters"]["Client"];
+        $VisaType = $update["result"]["parameters"]["VisaType"];
+        $Quantity = $update["result"]["parameters"]["Quantity"];
+        $Client= urlencode($Client);
+        $VisaType= urlencode($VisaType);
+        
+        $EntryUrl="http://manage.otb-network.com/application/VisaClientEntry.php?Date=".$Date."&Client=".$Client."&VisaType=".$VisaType."&Quantity=".$Quantity;
+                        
+                        $content=file_get_contents($EntryUrl);
+                        $Obj=json_decode($content, true);
+                        $StatusCode=$Obj['StatusCode'];
+                        $fDate = $Obj["Date"];
+                        $fClient = $Obj["Client"];
+                        $fVisaType = $Obj["VisaType"];
+                        $fQuantity = $Obj["Quantity"];
+                        $fDate = date("d M Y", strtotime($fDate));
+                        $Success = array("speech" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+                          "type" => 0);
+                        $TSuccess = array("title" => " Saved Successfully ",
+                           "subtitle" => "Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+                           "imageUrl" => "",
+                           "buttons" => array(),
+                          "type" => 1,
+                        "platform" => "telegram");
+                        $messages = array($Success,$TSuccess);
+                        if($StatusCode=="200"){
+        sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+            "displayText" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+            "contextOut" => array(),
+            "resetContexts" => True,
+            "messages" => $messages
+        ));
+        }else if($StatusCode=="400"){
+    
+            sendMessage(array(
+            "source" => $update["result"]["source"],
+            "speech" => "Saving failed, Please try again",
+            "displayText" => "Saving failed, Please try again",
+            "contextOut" => array()
+        ));
+            
+        }
+       
+    }
+        
     if($update["result"]["action"] == "VisaVendorEntry"){
         
         $Date = $update["result"]["parameters"]["Date"];
@@ -134,7 +184,7 @@ function processMessage($update) {
                         $TSuccess = array("title" => " Saved Successfully ",
                            "subtitle" => "Date: ".$fDate."\nVendor: ".$fVendor."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
                            "imageUrl" => "",
-                           "buttons" => array(array("postback" => "" , "text" => "New Ticket")),
+                           "buttons" => array(),
                           "type" => 1,
                         "platform" => "telegram");
                         $messages = array($Success,$TSuccess);
