@@ -3,6 +3,9 @@ ini_set("allow_url_open", 1);
 
 function processMessage($update) {
     
+    
+        $LogStatus="NoData";
+    
     if($update["result"]["action"] == "SignOn"){
         
   $Username = $update["result"]["parameters"]["username"];
@@ -261,7 +264,6 @@ function processMessage($update) {
     
     if($update["result"]["action"] == "TicketDaily"){
         
-        $LogStatus="NoData";
         
          $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
         if($LogStatus=="Success"){
