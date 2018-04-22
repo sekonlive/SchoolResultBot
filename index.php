@@ -25,7 +25,7 @@ function processMessage($update) {
                                     $content=file_get_contents($EntryUrl);
                                     $Obj=json_decode($content, true);
                                     $StatusCode=$Obj['StatusCode'];
-                                    $fDate = $Obj["Date"];
+                                    $fDate = $Obj["date"];
                                     $fClient = $Obj["Client"];
                                     $fVisaType = $Obj["VisaType"];
                                     $fQuantity = $Obj["Quantity"];
