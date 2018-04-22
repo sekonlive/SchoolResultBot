@@ -225,11 +225,18 @@ function processMessage($update) {
                                         ));
                                     }
                                 }else{
+                                    $messages = array("title" => " Login required ",
+                                    "subtitle" => "Please Log in to Access Daily Sales report.","imageUrl" => "",
+                                    "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
+                                    "type" => 1,
+                                    "platform" => "telegram");
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
                                     "speech" => "Please Log in to Access Daily Sales report.",
-                                    "displayText" => "Please Log in to Access Daily Sales report."
-                                    ));
+                                    "displayText" => "Please Log in to Access Daily Sales report.",
+                                    "messages" => $messages
+                                    )); 
+             
                                 } 
             
                                 
