@@ -5,7 +5,7 @@ function processMessage($update) {
     
     
         $LogStatus="NoData";
-    $Action=$update["result"]["action"] == "DoSomething";
+    $Action=$update["result"]["action"];
     
     switch($Action){
             
