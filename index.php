@@ -6,49 +6,67 @@ function processMessage($update) {
     
         $LogStatus="NoData";
     $Action=$update["result"]["action"];
-    
+    $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
     switch($Action){
             
             
         case "VisaClientEntry":
-                                $Date = $update["result"]["parameters"]["Date"];
-                                $Client = $update["result"]["parameters"]["Client"];
-                                $VisaType = $update["result"]["parameters"]["VisaType"];
-                                $Quantity = $update["result"]["parameters"]["Quantity"];
-                                $Client= urlencode($Client);
-                                $VisaType= urlencode($VisaType);
+                                if($LogStatus=="Success"){
+                                    
+                                    $Date = $update["result"]["parameters"]["Date"];
+                                    $Client = $update["result"]["parameters"]["Client"];
+                                    $VisaType = $update["result"]["parameters"]["VisaType"];
+                                    $Quantity = $update["result"]["parameters"]["Quantity"];
+                                    $Client= urlencode($Client);
+                                    $VisaType= urlencode($VisaType);
                         
-                                $EntryUrl="http://manage.otb-network.com/application/VisaClientEntry.php?Date=".$Date."&Client=".$Client."&VisaType=".$VisaType."&Quantity=".$Quantity;
+                                    $EntryUrl="http://manage.otb-network.com/application/VisaClientEntry.php?Date=".$Date."&Client=".$Client."&VisaType=".$VisaType."&Quantity=".$Quantity;
                         
-                                $content=file_get_contents($EntryUrl);
-                                $Obj=json_decode($content, true);
-                                $StatusCode=$Obj['StatusCode'];
-                                $fDate = $Obj["Date"];
-                                $fClient = $Obj["Client"];
-                                $fVisaType = $Obj["VisaType"];
-                                $fQuantity = $Obj["Quantity"];
-                                $fDate = date("d M Y", strtotime($fDate));
-                                $Success = array("speech" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
-                                "type" => 0);
-                                $TSuccess = array("title" => " Saved Successfully ",
-                                "subtitle" => "Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
-                                "imageUrl" => "",
-                                "buttons" => array(),
-                                "type" => 1,
-                                "platform" => "telegram");
-                                $messages = array($Success,$TSuccess);
-                                if($StatusCode=="200"){
-                                    sendMessage(array("source" => $update["result"]["source"],"speech" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,"displayText" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,"contextOut" => array(),"resetContexts" => True,"messages" => $messages));
-                                }
-                                else if($StatusCode=="400"){
+                                    $content=file_get_contents($EntryUrl);
+                                    $Obj=json_decode($content, true);
+                                    $StatusCode=$Obj['StatusCode'];
+                                    $fDate = $Obj["Date"];
+                                    $fClient = $Obj["Client"];
+                                    $fVisaType = $Obj["VisaType"];
+                                    $fQuantity = $Obj["Quantity"];
+                                    $fDate = date("d M Y", strtotime($fDate));
+                                    $Success = array("speech" => " Saved Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+                                    "type" => 0);
+                                    $TSuccess = array("title" => " Saved Successfully ",
+                                    "subtitle" => "Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,
+                                    "imageUrl" => "",
+                                    "buttons" => array(),
+                                    "type" => 1,
+                                    "platform" => "telegram");
+                                    $messages = array($Success,$TSuccess);
+                                    if($StatusCode=="200"){
+                                        sendMessage(array("source" => $update["result"]["source"],"speech" => " Saved Successfully \n \n Date:  ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity: ".$fQuantity,"displayText" => " Saved     Successfully \n \n Date: ".$fDate."\nClient: ".$fClient."\nVisa Type: ".$fVisaType."\nQuantity:     ".$fQuantity,"contextOut" => array(),"resetContexts" => True,"messages" => $messages));
+                                    }
+                                    else if($StatusCode=="400"){
     
+                                        sendMessage(array(
+                                        "source" => $update["result"]["source"],
+                                        "speech" => "Saving failed, Please try again",
+                                        "displayText" => "Saving failed, Please try again",
+                                        "contextOut" => array()
+                                        ));
+            
+                                    }
+                                }
+                                else{
+                                    
+                                    $messages = array("title" => " Login required ",
+                                    "subtitle" => "Please Log in to Access this section.","imageUrl" => "",
+                                    "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
+                                    "type" => 1,
+                                    "platform" => "telegram");
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
-                                    "speech" => "Saving failed, Please try again",
-                                    "displayText" => "Saving failed, Please try again",
-                                    "contextOut" => array()
-                                    ));
-            
+                                    "speech" => "Please Log in to Access this section.",
+                                    "displayText" => "Please Log in to Access this section.",
+                                    "messages" => array($messages)
+                                    )); 
+             
                                 }
                                 break;
         
@@ -369,7 +387,7 @@ function processMessage($update) {
                                 "source" => $update["result"]["source"],
                                 "speech" => "Please Log in to Access Monthly Sales report.",
                                 "displayText" => "Please Log in to Access Monthly Sales report.",
-                                "messages" => $messages
+                                "messages" => array($messages)
                                 )); 
              
                             }
