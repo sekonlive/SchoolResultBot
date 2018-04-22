@@ -234,7 +234,7 @@ function processMessage($update) {
                                     "source" => $update["result"]["source"],
                                     "speech" => "Please Log in to Access Daily Sales report.",
                                     "displayText" => "Please Log in to Access Daily Sales report.",
-                                    "messages" => $messages
+                                    "messages" => array($messages)
                                     )); 
              
                                 } 
