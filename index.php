@@ -260,44 +260,61 @@ function processMessage($update) {
                                 
                                 break;
                                  
-        case "AddTicket":                
-                            $Date = $update["result"]["parameters"]["Date"];
-                            $Cost = $update["result"]["parameters"]["Cost"];
-                            $Sell = $update["result"]["parameters"]["Sell"];
-                            $NoPax = $update["result"]["parameters"]["NoPax"];
-        
-        
-                            $EntryUrl="http://manage.otb-network.com/application/TicketAdd.php?Date=".$Date."&Cost=".$Cost."&Sell=".$Sell."&NoPax=".$NoPax;
-                        
-                            $content=file_get_contents($EntryUrl);
-                            $Obj=json_decode($content, true);
-                            $StatusCode=$Obj['StatusCode'];
-                            $fDate = $Obj["Date"];
-                            $fCost = $Obj["Cost"];
-                            $fSell = $Obj["Sell"];
-                            $fNoPax = $Obj["NoPax"];
-                            $fDate = date("d M Y", strtotime($fDate));
-                            $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\nCost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
-                            "type" => 0);
-                            $TSuccess = array("title" => " Success",
-                            "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
-                            "imageUrl" => "",
-                            "buttons" => array(array("postback" => "" , "text" => "New Ticket")),
+        case "AddTicket": 
+                            $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
+                            if($LogStatus=="Success"){               
+                                $Date = $update["result"]["parameters"]["Date"];
+                                $Cost = $update["result"]["parameters"]["Cost"];
+                                $Sell = $update["result"]["parameters"]["Sell"];
+                                $NoPax = $update["result"]["parameters"]["NoPax"];
+            
+            
+                                $EntryUrl="http://manage.otb-network.com/application/TicketAdd.php?Date=".$Date."&Cost=".$Cost."&Sell=".$Sell."&NoPax=".$NoPax;
+                            
+                                $content=file_get_contents($EntryUrl);
+                                $Obj=json_decode($content, true);
+                                $StatusCode=$Obj['StatusCode'];
+                                $fDate = $Obj["Date"];
+                                $fCost = $Obj["Cost"];
+                                $fSell = $Obj["Sell"];
+                                $fNoPax = $Obj["NoPax"];
+                                $fDate = date("d M Y", strtotime($fDate));
+                                $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\nCost: ".$fCost."\nPnr: ".$fSell."\nNo of Pax: ".$fNoPax,
+                                "type" => 0);
+                                $TSuccess = array("title" => " Success",
+                                "subtitle" => "Date: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,
+                                "imageUrl" => "",
+                                "buttons" => array(array("postback" => "" , "text" => "New Ticket")),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                $messages = array($Success,$TSuccess);
+                                if($StatusCode=="200"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"displayText" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"contextOut" => array(),"resetContexts" => True,"messages" => $messages
+                                    ));
+                                }else if($StatusCode=="400"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"displayText" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted priceQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"contextOut" => array()
+                                    ));
+                
+                                }
+                        }else{
+                            $messages = array("title" => " Login required ",
+                            "subtitle" => "Please Log in to Access Daily Sales report.","imageUrl" => "",
+                            "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
                             "type" => 1,
                             "platform" => "telegram");
-                            $messages = array($Success,$TSuccess);
-                            if($StatusCode=="200"){
-                                sendMessage(array(
-                                "source" => $update["result"]["source"],
-                                "speech" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"displayText" => "Done\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"contextOut" => array(),"resetContexts" => True,"messages" => $messages
-                                ));
-                            }else if($StatusCode=="400"){
-                                sendMessage(array(
-                                "source" => $update["result"]["source"],
-                                "speech" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"displayText" => "Failed\n-----------\nDate: ".$fDate."\nCost: ".$fCost."\nQuoted priceQuoted price: ".$fSell."\nNo of Pax: ".$fNoPax,"contextOut" => array()
-                                ));
+                            sendMessage(array(
+                            "source" => $update["result"]["source"],
+                            "speech" => "Please Log in to Access Daily Sales report.",
+                            "displayText" => "Please Log in to Access Daily Sales report.",
+                            "messages" => array($messages)
+                            )); 
+             
+                        } 
             
-                            }
                                 break;
        
                                          
