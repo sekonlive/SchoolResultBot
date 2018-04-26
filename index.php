@@ -227,8 +227,7 @@ function processMessage($update) {
                                         "source" => $update["result"]["source"],
                                         "speech" => "Daily Report Daily Report \n-----------\nDate: ".$fDate."\nCost: ₹".$fCost."\n*Quoted price*: ₹".$fSell."\nProfit: ₹".$fProfit."\nNo of Pax: ".$fNoPax,
                                         "displayText" => "Daily Report \n-----------\nDate: ".$fDate."\nCost: ₹".$fCost."\n*Quoted price*: ₹".$fSell."\nProfit: ₹".$fProfit."\nNo of Pax: ".$fNoPax,
-                                        "contextOut" => array(),
-                                        "resetContexts" => True,
+                                        "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
                                          "parse_mode"=> "Markdown",
                                         "messages" => $messages
                                         ));
@@ -239,7 +238,7 @@ function processMessage($update) {
                                         "speech" => "`No Entry Founded on` ".$fDate.$_SESSION["status"],
                                         "displayText" => "`No Entry Founded on` ".$fDate.$_SESSION["status"],
                                         "parse_mode"=> "Markdown",
-                                        "contextOut" => array()
+                                        "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
                                         ));
                                     }
                                 }else{
@@ -378,8 +377,7 @@ function processMessage($update) {
                                     "source" => $update["result"]["source"],
                                     "speech" => "*Report* \n-----------\nReport \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
                                     "displayText" => "*Report* \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\n*Profit:* ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
-                                    "contextOut" => array(),
-                                    "resetContexts" => True,
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
                                     "parse_mode"=> "Markdown",
                                     "messages" => $messages
                                     ));
@@ -389,7 +387,7 @@ function processMessage($update) {
                                     "source" => $update["result"]["source"],
                                     "speech" => "Report\n-----------\nPeriod: ".$fsDate." - ".$feDate."\n No Entry Founded",
                                     "displayText" => "Report\n-----------\nPeriod: ".$fsDate." - ".$feDate."\n No Entry Founded",
-                                    "contextOut" => array()
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
                                     ));
             
                                 }
@@ -420,7 +418,7 @@ function processMessage($update) {
                                 "source" => $update["result"]["source"],
                                 "speech" => "Action Could not find on server! ",
                                 "displayText" => "Action Could not find on server! ",
-                                "contextOut" => array()
+                                "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
                                 ));
                                 break;
         
