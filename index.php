@@ -422,19 +422,19 @@ function processMessage($update) {
                                 $LTA = $Obj["LTA"];
                                 $fDate = date("d M y", strtotime($fDate));
                                 
-                                $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => " DSR - VISA ",
-                                "subtitle" => "Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                "subtitle" => "Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "buttons" => array(),
                                 "type" => 1,
                                 "platform" => "telegram");
-                                $messages = array($Success,$TSuccess);
+                                $messages = array($Success);
                                 if($fErrorType=="200"){
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
-                                    "speech" => "*DSR - VISA * \n-----------\nReport \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
-                                    "displayText" => "*DSR - VISA * \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                    "speech" => "*DSR - VISA * \n-----------\nReport \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
+                                    "displayText" => "*DSR - VISA * \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                     "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
                                     "parse_mode"=> "Markdown",
                                     "messages" => $messages
