@@ -422,10 +422,10 @@ function processMessage($update) {
                                 $LTA = $Obj["LTA"];
                                 $fDate = date("d M y", strtotime($fDate));
                                 
-                                $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => " DSR - VISA ",
-                                "subtitle" => "Date: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                "subtitle" => "Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
                                 "buttons" => array(),
                                 "type" => 1,
                                 "platform" => "telegram");
@@ -433,8 +433,8 @@ function processMessage($update) {
                                 if($fErrorType=="200"){
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
-                                    "speech" => "*Report* \n-----------\nReport \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
-                                    "displayText" => "*Report* \n ----------- \nDate: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                    "speech" => "*DSR - VISA * \n-----------\nReport \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                    "displayText" => "*DSR - VISA * \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
                                     "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
                                     "parse_mode"=> "Markdown",
                                     "messages" => $messages
@@ -443,8 +443,8 @@ function processMessage($update) {
     
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
-                                    "speech" => "DSR - VISA \n ----------- \n Date: ".$fsDate."\n No Entry Founded",
-                                    "displayText" => "DSR - VISA \n ----------- \n Date: ".$fsDate."\n No Entry Founded",
+                                    "speech" => "DSR - VISA \n ----------- \n Date: ".$fDate."\n No Entry Founded",
+                                    "displayText" => "DSR - VISA \n ----------- \n Date: ".$fDate."\n No Entry Founded",
                                     "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
                                     ));
             
