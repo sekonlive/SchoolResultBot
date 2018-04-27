@@ -408,6 +408,65 @@ function processMessage($update) {
                             }
                                 break;  
             
+        case "VisaDSR":     $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
+                            if($LogStatus=="Success"){
+                                $Date = $update["result"]["parameters"]["Date"];
+                                $fetchData="http://manage.otb-network.com/application/API/DSR_Visa.php?Date=".$Date;
+                                $content=file_get_contents($fetchData);
+                                $Obj=json_decode($content, true);
+                                $fErrorType = $Obj["ErrorType"];
+                                $fErrorMessage = $Obj["ErrorMessage"];
+                                $fDate = $Obj["Date"];
+                                $LTD = $Obj["LTD"];
+                                $STD = $Obj["STD"];
+                                $LTA = $Obj["LTA"];
+                                $fDate = date("d M y", strtotime($fDate));
+                                
+                                $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                "type" => 0);
+                                $TSuccess = array("title" => " DSR - VISA ",
+                                "subtitle" => "Date: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                "buttons" => array(),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                $messages = array($Success,$TSuccess);
+                                if($fErrorType=="200"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "*Report* \n-----------\nReport \n ----------- \n*Period:* ".$fsDate." - ".$feDate."\n*Cost:* ₹".$fCost."\n*Quoted price:* ₹".$fSell."\nProfit: ₹".$fProfit."\n*No of Pax:* ".$fNoPax,
+                                    "displayText" => "*Report* \n ----------- \nDate: ".$fsDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ₹".$STD,
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
+                                    "parse_mode"=> "Markdown",
+                                    "messages" => $messages
+                                    ));
+                                }else{
+    
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "DSR - VISA \n ----------- \n Date: ".$fsDate."\n No Entry Founded",
+                                    "displayText" => "DSR - VISA \n ----------- \n Date: ".$fsDate."\n No Entry Founded",
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
+                                    ));
+            
+                                }
+                            }
+                            else{
+                                $messages = array("title" => " Login required ",
+                                "subtitle" => "Please Log in to Access Monthly Sales report.","imageUrl" => "",
+                                "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                sendMessage(array(
+                                "source" => $update["result"]["source"],
+                                "speech" => "Please Log in to Access Daily Sales report.",
+                                "displayText" => "Please Log in to Access Daily Sales report.",
+                                "messages" => array($messages)
+                                )); 
+             
+                            }           
+                                
+                                break;  
+            
         case "#":                
                                 
                                 break;
