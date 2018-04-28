@@ -429,7 +429,7 @@ function processMessage($update) {
                                 $fDate = date("d M y", strtotime($fDate));
                                 $EC=count($Obj["Data"]);
                                 for($i=0;$i<$EC;$i++)
-                                    $Expanded+="*".$Obj["Data"][i]["Name"]."*\n*LTD:* ".$Obj["Data"][i]["LTD"]."*\n*LTA:* ".$Obj["Data"][i]["LTA"]."*\n*STD:* ".$Obj["Data"][i]["STD"]."\n\n";
+                                    $Expanded+="*".$Obj["Data"][$i]["Name"]."*\n*LTD:* ".$Obj["Data"][$i]["LTD"]."*\n*LTA:* ".$Obj["Data"][$i]["LTA"]."*\n*STD:* ".$Obj["Data"][$i]["STD"]."\n\n";
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => "DSR - VISA",
