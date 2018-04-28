@@ -424,12 +424,12 @@ function processMessage($update) {
                                 
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
-                                $TSuccess = array("title" => " DSR - VISA ",
-                                "subtitle" => "Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
+                                $TSuccess = array("title" => "DSR - VISA",
+                                "subtitle" => "Date: ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "buttons" => array(),
                                 "type" => 1,
                                 "platform" => "telegram");
-                                $messages = array($Success);
+                                $messages = array($TSuccess,$Success);
                                 if($fErrorType=="200"){
                                     sendMessage(array(
                                     "source" => $update["result"]["source"],
