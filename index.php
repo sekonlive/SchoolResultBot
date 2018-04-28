@@ -1,6 +1,12 @@
 <?php 
 ini_set("allow_url_open", 1);
-
+function ReternZero($num)
+{
+    if($num==null)
+        return 0;
+    else
+        return $num;
+}
 function processMessage($update) {
     
     
@@ -417,9 +423,9 @@ function processMessage($update) {
                                 $fErrorType = $Obj["ErrorType"];
                                 $fErrorMessage = $Obj["ErrorMessage"];
                                 $fDate = $Obj["Date"];
-                                $LTD = $Obj["LTD"];
-                                $STD = $Obj["STD"];
-                                $LTA = $Obj["LTA"];
+                                $LTD = ReternZero($Obj["LTD"]);
+                                $STD = ReternZero($Obj["STD"]);
+                                $LTA = ReternZero($Obj["LTA"]);
                                 $fDate = date("d M y", strtotime($fDate));
                                 
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
