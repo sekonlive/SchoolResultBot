@@ -460,7 +460,7 @@ function processMessage($update) {
                             }
                             else{
                                 $messages = array("title" => " Login required ",
-                                "subtitle" => "Please Log in to Access Monthly Sales report.","imageUrl" => "",
+                                "subtitle" => "Please Log in to Access Daily Sales report.","imageUrl" => "",
                                 "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
                                 "type" => 1,
                                 "platform" => "telegram");
@@ -473,7 +473,68 @@ function processMessage($update) {
              
                             }           
                                 
-                                break;  
+                                break;   
+            
+        case "VisaMSR":     $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
+                            if($LogStatus=="Success"){
+                                $Date = $update["result"]["parameters"]["Date"];
+                                $fetchData="http://manage.otb-network.com/application/API/MSR_Visa.php?Date=".$Date;
+                                $content=file_get_contents($fetchData);
+                                $Obj=json_decode($content, true);
+                                $fErrorType = $Obj["ErrorType"];
+                                $fErrorMessage = $Obj["ErrorMessage"];
+                                $fDate = $Obj["Date"];
+                                $LTD = ReternZero($Obj["LTD"]);
+                                $STD = ReternZero($Obj["STD"]);
+                                $LTA = ReternZero($Obj["LTA"]);
+                                $fDate = date("d M y", strtotime($fDate));
+                                $EC=count($Obj["Data"]);
+                                for($i=0;$i<$EC;$i++)
+                                    $Expanded=$Expanded."*".$Obj["Data"][$i]["Name"]."*\n*LTD:* ".ReternZero($Obj["Data"][$i]["LTD"])."\n*LTA:* ".ReternZero($Obj["Data"][$i]["LTA"])."\n*STD:* ".ReternZero($Obj["Data"][$i]["STD"])."\n\n";
+                                $Success = array("speech" => " MSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
+                                "type" => 0);
+                                $TSuccess = array("title" => "MSR - VISA",
+                                "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD."\n\n".$Expanded,
+                                "buttons" => array(array("postback" => "" , "text" => "Expand")),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                $messages = array($TSuccess,$Success);
+                                if($fErrorType=="200"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "*MSR - VISA * \n-----------\nReport \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
+                                    "displayText" => "*MSR - VISA * \n ----------- \nDate: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success"))),
+                                    "parse_mode"=> "Markdown",
+                                    "messages" => $messages
+                                    ));
+                                }else{
+    
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "MSR - VISA \n ----------- \n Date: ".$fDate."\n No Entry Founded",
+                                    "displayText" => "MSR - VISA \n ----------- \n Date: ".$fDate."\n No Entry Founded",
+                                    "contextOut" => array(array("name"=>"Log","lifespan"=>8, "parameters"=>array("LogStatus"=>"Success")))
+                                    ));
+            
+                                }
+                            }
+                            else{
+                                $messages = array("title" => " Login required ",
+                                "subtitle" => "Please Log in to Access Monthly Sales report.","imageUrl" => "",
+                                "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                sendMessage(array(
+                                "source" => $update["result"]["source"],
+                                "speech" => "Please Log in to Access Monthly Sales report.",
+                                "displayText" => "Please Log in to Access Monthly Sales report.",
+                                "messages" => array($messages)
+                                )); 
+             
+                            }           
+                                
+                                break;   
             
         case "#":                
                                 
