@@ -429,10 +429,12 @@ function processMessage($update) {
                                 $fDate = date("d M y", strtotime($fDate));
                                 $Expanded=array();
                                 $EC=count($Obj["Data"]);
+                                for($i=0;$i<$EC;$i++)
+                                    $Expanded+="*".$Obj["Data"][i]["Name"]."*\n*LTD:* ".$Obj["Data"][i]["LTD"]."*\n*LTA:* ".$Obj["Data"][i]["LTA"]."*\n*STD:* ".$Obj["Data"][i]["STD"];
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => "DSR - VISA",
-                                "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD." ".$EC,
+                                "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD."\n".$Expanded,
                                 "buttons" => array(array("postback" => "" , "text" => "Expand")),
                                 "type" => 1,
                                 "platform" => "telegram");
