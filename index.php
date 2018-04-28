@@ -432,7 +432,7 @@ function processMessage($update) {
                                 "type" => 0);
                                 $TSuccess = array("title" => "DSR - VISA",
                                 "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD,
-                                "buttons" => array(),
+                                "buttons" => array(array("postback" => "" , "text" => "Expand")),
                                 "type" => 1,
                                 "platform" => "telegram");
                                 $messages = array($TSuccess,$Success);
