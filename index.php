@@ -429,11 +429,11 @@ function processMessage($update) {
                                 $fDate = date("d M y", strtotime($fDate));
                                 $EC=count($Obj["Data"]);
                                 for($i=0;$i<$EC;$i++)
-                                    $Expanded="*".$Obj["Data"][$i]["Name"]."*\n*LTD:* ".ReternZero($Obj["Data"][$i]["LTD"])."*\n*LTA:* ".ReternZero($Obj["Data"][$i]["LTA"])."*\n*STD:* ".ReternZero($Obj["Data"][$i]["STD"])."\n\n";
+                                    $Expanded=$Expanded."*".$Obj["Data"][$i]["Name"]."*\n*LTD:* ".ReternZero($Obj["Data"][$i]["LTD"])."*\n*LTA:* ".ReternZero($Obj["Data"][$i]["LTA"])."*\n*STD:* ".ReternZero($Obj["Data"][$i]["STD"])."\n\n";
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => "DSR - VISA",
-                                "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD."\n".$Expanded,
+                                "subtitle" => "*Date:* ".$fDate."\n*Long Term DXB:* ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB:* ".$STD."\n\n".$Expanded,
                                 "buttons" => array(array("postback" => "" , "text" => "Expand")),
                                 "type" => 1,
                                 "platform" => "telegram");
