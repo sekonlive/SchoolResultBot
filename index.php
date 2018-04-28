@@ -428,7 +428,7 @@ function processMessage($update) {
                                 $LTA = ReternZero($Obj["LTA"]);
                                 $fDate = date("d M y", strtotime($fDate));
                                 $Expanded=array();
-                                $EC=count($Obj["DATA"]);
+                                $EC=count($Obj["Data"]);
                                 $Success = array("speech" => " DSR - VISA \n ----------- \n Date: ".$fDate."\n*Long Term DXB:*  ".$LTD."\n*Long Term AUH:* ".$LTA."\n*Short Term DXB: ".$STD,
                                 "type" => 0);
                                 $TSuccess = array("title" => "DSR - VISA",
