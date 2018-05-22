@@ -328,8 +328,8 @@ function processMessage($update) {
         case "AddCollection": 
                             $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
                             if($LogStatus=="Success"){               
-                                $Date = $update["result"]["parameters"]["Date"];
-                                $Amount = $update["result"]["parameters"]["Amount"];
+                                $Date = $update["result"]["contexts"][1]["parameters"]["Date"];
+                                $Amount = $update["result"]["contexts"][1]["parameters"]["Amount"];
             
             
                                 $EntryUrl="http://manage.otb-network.com/application/collection.php?Date=".$Date."&amount=".$Amount;
