@@ -322,6 +322,62 @@ function processMessage($update) {
             
                                 break;
        
+                                        
+            
+                                 
+        case "AddCollection": 
+                            $LogStatus = $update["result"]["contexts"][0]["parameters"]["LogStatus"];
+                            if($LogStatus=="Success"){               
+                                $Date = $update["result"]["parameters"]["Date"];
+                                $Amount = $update["result"]["parameters"]["Amount"];
+            
+            
+                                $EntryUrl="http://manage.otb-network.com/application/collection.php?Date=".$Date."&amount=".$Amount;
+                            
+                                $content=file_get_contents($EntryUrl);
+                                $Obj=json_decode($content, true);
+                                $StatusCode=$Obj['StatusCode'];
+                                $fDate = $Obj["Date"];
+                                $fAmount = $Obj["Amount"];
+                                $fDate = date("d M Y", strtotime($fDate));
+                                $Success = array("speech" => " Success \n ----------- \n Date: ".$fDate."\nAmount: ".$fAmount,
+                                "type" => 0);
+                                $TSuccess = array("title" => " Success",
+                                "subtitle" => "Date: ".$fDate."\nAmount: ".$fAmount,
+                                "imageUrl" => "",
+                                "buttons" => array(array("postback" => "" , "text" => "New Collection")),
+                                "type" => 1,
+                                "platform" => "telegram");
+                                $messages = array($Success,$TSuccess);
+                                if($StatusCode=="200"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "Done\n-----------\nDate: ".$fDate."\nAmount: ".$fAmount,"displayText" => "Done\n-----------\nDate: ".$fDate."\nAmount: ".$fAmount,"contextOut" => array(),"resetContexts" => True,"messages" => $messages
+                                    ));
+                                }else if($StatusCode=="400"){
+                                    sendMessage(array(
+                                    "source" => $update["result"]["source"],
+                                    "speech" => "Failed\n-----------\nDate: ".$fDate."\nAmount: ".$fAmount,"displayText" => "Failed\n-----------\nDate: ".$fDate."\nAmount: ".$fAmount,"contextOut" => array()
+                                    ));     
+                
+                                }
+                        }else{
+                            $messages = array("title" => " Login required ",
+                            "subtitle" => "Please Log in to Access Daily Sales report.","imageUrl" => "",
+                            "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
+                            "type" => 1,
+                            "platform" => "telegram");
+                            sendMessage(array(
+                            "source" => $update["result"]["source"],
+                            "speech" => "Please Log in to Enter Collection.",
+                            "displayText" => "Please Log in to Enter Collection.",
+                            "messages" => array($messages)
+                            )); 
+             
+                        } 
+            
+                                break;
+       
                                          
         case "Review":                
                             $fpnr = $update["result"]["parameters"]["pnr"];
