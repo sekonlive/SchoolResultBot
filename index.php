@@ -363,7 +363,7 @@ function processMessage($update) {
                                 }
                         }else{
                             $messages = array("title" => " Login required ",
-                            "subtitle" => "Please Log in to Access Daily Sales report.","imageUrl" => "",
+                            "subtitle" => "Please Log in to Enter Fund collection.","imageUrl" => "",
                             "buttons" => array(array("postback" => "" , "text" => "Log in"),array("postback" => "" , "text" => "Cancel")),
                             "type" => 1,
                             "platform" => "telegram");
